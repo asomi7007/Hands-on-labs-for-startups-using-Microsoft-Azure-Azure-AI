@@ -1,5 +1,26 @@
 # Deployment
 
-- CI/CD steps
-- Azure targets
-- Post-deploy checks
+Lab 1에서는 애플리케이션 배포 대신 Founders Hub를 통해 발급받은 크레딧이 Azure
+구독에 제대로 연결되었는지 확인하는 작업이 “배포 결과 검증”에 해당합니다. 아래 단계를
+통해 크레딧 활성화를 모니터링하고, 필요 시 후속 조치를 취합니다.
+
+## CI/CD steps
+
+전통적인 파이프라인이 없으므로, 온보딩 절차 완료 후 아래 항목을 수동 체크합니다.
+
+1. Founders Hub에서 `$1,000 Azure 크레딧` 카드가 **사용 완료(Activated)** 상태인지 확인합니다.
+2. 동일한 브라우저에서 Azure 포털이 정상적으로 열리며, 새 구독이 자동 생성됐는지 확인합니다.
+3. Azure CLI의 `az account list` 명령을 실행해 새 구독이 표시되는지 검증합니다.
+
+## Azure targets
+
+- **기본 구독**: Founders Hub가 생성한 `Azure subscription` (종량제 또는 Credits 기반) 하나가 기본 타깃이 됩니다.
+- **Cost Management**: 크레딧 잔액과 사용량을 추적할 핵심 도구입니다.
+- **Entra ID 테넌트**: 새 Microsoft 계정에 연결된 기본 테넌트가 자동으로 생성되며, 추가 구성 없이 실습에 사용 가능합니다.
+
+## Post-deploy checks
+
+1. Azure 포털 우측 상단 배너에 `$1,000 Azure 크레딧`이 표시되는지 확인합니다.
+2. `비용 관리 + 청구` → **결제 방법**에서 `Azure 크레딧`이 기본 결제 수단으로 노출되는지 확인합니다.
+3. `비용 분석` 탭을 열어 초기 잔액이 정확히 입력되었는지 확인합니다. 표시되지 않을 경우 최대 1시간 대기 후 새로고침합니다.
+4. `구독` 메뉴에서 활성화된 구독 상태가 `Enabled`인지 확인하고, 문제 발생 시 Founders Hub 포털에서 혜택을 다시 실행합니다.
