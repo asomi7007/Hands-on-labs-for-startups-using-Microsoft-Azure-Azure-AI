@@ -4,7 +4,15 @@ repo_url: https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME
 
 nav:
   - 소개: index.md
-  - Lab 1 · Founders Hub & Azure 크레딧: lab1/index.md
+  - Lab 1 · Founders Hub & Azure 크레딧:
+      - 전체 안내: lab1/index.md
+      - Introduction: lab1/introduction.md
+      - Development: lab1/development.md
+      - Deployment: lab1/deployment.md
+      - Security: lab1/security.md
+      - Resources: lab1/resources.md
+      - Conversation: lab1/conversation.md
+      - Summary: lab1/summary.md
   - Lab 2 · WordPress + Azure AI:
       - 개요: lab2/index.md
       - 도메인 구매: lab2/domain.md
