@@ -1,0 +1,72 @@
+site_name: 바로 써먹는 Azure & Azure AI 활용
+repo_name: 바로 써먹는 Azure & Azure AI 활용
+repo_url: https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME
+
+nav:
+  - 소개: index.md
+  - Lab 1 · Founders Hub & Azure 크레딧: lab1/index.md
+  - Lab 2 · WordPress + Azure AI:
+      - 개요: lab2/index.md
+      - 도메인 구매: lab2/domain.md
+      - Azure AI Foundry 에이전트 생성: lab2/ai-agent.md
+      - WordPress 챗봇 통합 (1): lab2/wp-chatbot-1.md
+      - Tool · RAG · Logic App 실습: lab2/tools-rag-logicapps.md
+      - WordPress 챗봇 통합 (2): lab2/wp-chatbot-2.md
+  - Lab 3 · Contoso Sales Assistant: lab3/index.md
+  - Lab 4 · Static Web Apps 배포: lab4/index.md
+  - Lab 5 · Node.js GitHub → Azure 배포: lab5/index.md
+  - 요약: summary.md
+  - 자료 모음: resources.md
+
+plugins:
+  - glightbox
+  - search
+
+theme:
+  name: material
+  logo: media/favicon.png
+  favicon: media/favicon.png
+  features:
+    - navigation.instant
+    - navigation.footer
+    - content.code.copy
+    - navigation.tabs.sticky
+    - content.tabs.link
+    - toc.follow
+
+font:
+  text: Roboto
+  code: Roboto Mono
+
+palette:
+  - scheme: default
+    primary: black
+    accent: pink
+    toggle:
+      icon: material/brightness-2
+      name: Switch to dark mode
+  - scheme: slate
+    primary: amber
+    accent: cyan
+    toggle:
+      icon: material/brightness-7
+      name: Switch to light mode
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 2
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+
+extra_css:
+  - css/custom.css
+extra_javascript:
+  - js/custom-nav.js
