@@ -1,15 +1,8 @@
-# Introduction
+# Introduction · 기술 스택과 아키텍처 이해하기
 
-Affinity Diagram App은 실시간 협업 포스트잇 보드 애플리케이션으로, 현대적인 웹 기술 스택과 클라우드 네이티브 배포 방식을 학습할 수 있는 완전한 풀스택 프로젝트입니다.
+이 문서에서는 Affinity Diagram App의 **기술적 배경**과 **시스템 아키텍처**를 상세히 다룹니다.
 
-## Goals
-
-- **GitHub Codespaces** 환경에서 별도 설치 없이 풀스택 앱을 실행합니다.
-- **React + FastAPI** 구조를 이해하고 프론트엔드-백엔드 통신을 확인합니다.
-- **WebSocket** 기반 실시간 동기화 메커니즘을 체험합니다.
-- **Docker** 컨테이너 이미지를 빌드하고 GitHub Container Registry에 푸시합니다.
-- **GitHub Actions**로 자동화된 CI/CD 파이프라인을 구축합니다.
-- **Azure Container Apps**에 서버리스 방식으로 앱을 배포합니다.
+> 💡 전체 개요는 [index.md](./index.md)에서, 실습은 [development.md](./development.md)에서 확인하세요.
 
 ## Prerequisites
 
@@ -67,33 +60,143 @@ Affinity Diagram App은 실시간 협업 포스트잇 보드 애플리케이션�
 └──────────────┘
 ```
 
-## Key technologies
+## 🛠️ 기술 스택 상세 설명
 
-### Frontend
-- **React 18**: 최신 리액트 기능 활용
-- **TypeScript**: 타입 안정성 제공
-- **Vite**: 빠른 개발 서버 및 빌드
-- **CSS Modules**: 스타일 캡슐화
+### Frontend 기술
 
-### Backend
-- **FastAPI**: 고성능 Python 웹 프레임워크
-- **WebSocket**: 실시간 양방향 통신
-- **Pydantic**: 데이터 검증 및 직렬화
-- **CORS**: 크로스 오리진 요청 처리
+| 기술 | 역할 | 사용 이유 |
+|------|------|----------|
+| **React 18** | UI 라이브러리 | Concurrent 기능으로 실시간 업데이트 최적화 |
+| **TypeScript** | 정적 타입 언어 | 런타임 오류 사전 방지, IDE 자동완성 강화 |
+| **Vite** | 빌드 도구 | 번개같은 HMR(Hot Module Replacement), ESM 기반 |
+| **Tailwind CSS** | 유틸리티 CSS | 빠른 스타일링, 일관된 디자인 시스템 |
+| **Framer Motion** | 애니메이션 | 부드러운 드래그 앤 드롭, 제스처 처리 |
 
-### DevOps
-- **Docker**: 컨테이너화
-- **GitHub Actions**: CI/CD 자동화
-- **GitHub Container Registry**: 이미지 저장소
-- **Azure Container Apps**: 서버리스 컨테이너 호스팅
+### Backend 기술
 
-## 학습 포인트
+| 기술 | 역할 | 사용 이유 |
+|------|------|----------|
+| **FastAPI** | 웹 프레임워크 | 비동기 처리, 자동 문서화, 타입 힌트 기반 검증 |
+| **WebSocket** | 실시간 통신 | 양방향 메시지 전송, 낮은 레이턴시 |
+| **Pydantic** | 데이터 검증 | JSON 직렬화/역직렬화, 타입 안정성 |
+| **Uvicorn** | ASGI 서버 | 고성능 비동기 서버, WebSocket 지원 |
 
-이 랩을 통해 다음을 배우게 됩니다:
+### DevOps 기술
 
-1. **클라우드 개발 환경**: Codespaces를 통한 즉시 사용 가능한 개발 환경
-2. **풀스택 아키텍처**: 프론트엔드와 백엔드의 역할 분리 및 통신
-3. **실시간 통신**: WebSocket 프로토콜의 작동 원리
-4. **컨테이너화**: Docker를 통한 일관된 배포 환경 구축
-5. **자동화**: Git 커밋부터 프로덕션 배포까지 자동화
-6. **서버리스**: 인프라 관리 없이 앱 실행
+| 기술 | 역할 | 사용 이유 |
+|------|------|----------|
+| **Docker** | 컨테이너화 | 환경 일관성, 멀티 스테이지 빌드로 이미지 최적화 |
+| **GitHub Actions** | CI/CD 파이프라인 | 자동 테스트, 빌드, 배포 - 코드 푸시만으로 완료 |
+| **GHCR** | 컨테이너 레지스트리 | GitHub 통합, 무료 이미지 저장소 |
+| **Azure Container Apps** | 서버리스 호스팅 | 인프라 관리 불필요, 자동 스케일링, HTTPS 자동 |
+
+## 🔄 실시간 동기화 작동 원리
+
+### WebSocket 연결 흐름
+
+```mermaid
+sequenceDiagram
+    participant C1 as 클라이언트 1
+    participant S as FastAPI Server
+    participant C2 as 클라이언트 2
+
+    C1->>S: WebSocket 연결 요청
+    S->>C1: 연결 승인 (connection_id 발급)
+    C2->>S: WebSocket 연결 요청
+    S->>C2: 연결 승인 (connection_id 발급)
+    
+    C1->>S: 포스트잇 생성 메시지
+    S->>S: 데이터 저장 & 버전 증가
+    S->>C1: 생성 확인 응답
+    S->>C2: 브로드캐스트 (포스트잇 생성됨)
+    
+    C2->>S: 포스트잇 이동 메시지
+    S->>S: 위치 업데이트
+    S->>C2: 이동 확인 응답
+    S->>C1: 브로드캐스트 (포스트잇 이동됨)
+```
+
+### Connection Manager 구조
+
+```python
+# backend/app/connection_manager.py
+class ConnectionManager:
+    """WebSocket 연결 풀 관리"""
+    
+    def __init__(self):
+        self.active_connections: Dict[str, WebSocket] = {}
+    
+    async def connect(self, connection_id: str, websocket: WebSocket):
+        """새 연결 추가"""
+        await websocket.accept()
+        self.active_connections[connection_id] = websocket
+    
+    async def broadcast(self, message: dict, exclude_id: Optional[str] = None):
+        """모든 클라이언트에게 메시지 전송 (발신자 제외 가능)"""
+        for connection_id, connection in self.active_connections.items():
+            if connection_id != exclude_id:
+                await connection.send_json(message)
+```
+
+### 버전 관리 및 충돌 방지
+
+- **Last Writer Wins (LWW)**: 마지막으로 수정한 사용자의 변경사항이 우선
+- **버전 카운터**: 각 포스트잇마다 버전 번호 관리
+- **낙관적 동시성 제어**: 충돌 시 클라이언트에게 최신 상태 다시 전송
+
+## 📦 Docker 멀티 스테이지 빌드
+
+### 이미지 최적화 전략
+
+```dockerfile
+# Stage 1: Frontend 빌드 (Node.js 18)
+FROM node:18-alpine AS frontend-build
+WORKDIR /app/frontend
+COPY frontend/package*.json ./
+RUN npm ci
+COPY frontend/ ./
+RUN npm run build
+
+# Stage 2: 최종 런타임 (Python 3.12-slim)
+FROM python:3.12-slim
+WORKDIR /app
+COPY backend/requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+COPY backend/ ./backend/
+COPY --from=frontend-build /app/frontend/dist ./frontend/dist
+CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+**최적화 효과:**
+- **빌드 전**: 약 300MB (Node.js + Python 전체 포함)
+- **빌드 후**: 약 150MB (런타임만 포함)
+- 50% 이미지 크기 감소 → 빠른 배포, 낮은 네트워크 비용
+
+## 🔐 OIDC 기반 무비밀번호 인증
+
+GitHub Actions에서 Azure에 로그인할 때 비밀번호나 액세스 키를 저장하지 않고  
+**OpenID Connect (OIDC)** 토큰으로 인증합니다.
+
+### 작동 원리
+
+```mermaid
+graph LR
+    A[GitHub Actions] -->|1. OIDC 토큰 요청| B[GitHub OIDC Provider]
+    B -->|2. 토큰 발급| A
+    A -->|3. 토큰으로 로그인| C[Azure AD]
+    C -->|4. 권한 검증| D[Azure Container Apps]
+    D -->|5. 배포 실행| A
+```
+
+**장점:**
+- ✅ GitHub Secrets에 비밀번호 불필요
+- ✅ 토큰은 짧은 시간만 유효 (보안 강화)
+- ✅ 권한을 세밀하게 제어 (최소 권한 원칙)
+
+---
+
+## 다음 단계
+
+아키텍처를 이해했다면 이제 실습을 시작하세요!
+
+➡️ **[development.md](./development.md)** - Codespaces에서 앱 실행하기

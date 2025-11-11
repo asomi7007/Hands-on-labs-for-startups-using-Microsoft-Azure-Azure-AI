@@ -30,38 +30,47 @@
 - 🎨 **5가지 색상**: 주제별로 색상 구분
 - 📌 **포스트잇 고정**: 실수로 이동되지 않도록 고정 기능
 
-## 문서 구조 안내
+## 📚 학습 진행 순서 안내
 
-랩 5 콘텐츠는 실습 흐름에 맞춰 여러 문서로 나뉘어 있습니다. 필요한 주제를 빠르게 찾아볼 수 있도록 아래 페이지를 참고하세요.
+이 워크샵은 **점진적 학습(Progressive Disclosure)** 원칙을 따릅니다.  
+각 단계에서 필요한 만큼만 배우고, 더 깊이 알고 싶을 때 다음 문서로 넘어가세요!
 
-- **[Introduction](./introduction.md)**: 프로젝트 상세 개요, 아키텍처, 실시간 동기화 작동 원리를 소개합니다.
-- **[Development](./development.md)**: GitHub 포크부터 Codespaces 실행, 로컬 개발 환경 구축, 앱 사용 방법까지 단계별 실습을 안내합니다.
-- **[Deployment](./deployment.md)**: Azure 배포 설정, CI/CD 파이프라인 구성, Docker 멀티 스테이지 빌드, 배포 확인까지의 전 과정을 다룹니다.
-- **[Security](./security.md)**: GitHub Secrets, Azure 권한 관리, OIDC 인증, 프로덕션 보안 강화 등을 정리했습니다.
-- **[Resources](./resources.md)**: 공식 문서, 추가 학습 자료, 유용한 명령어, 관련 링크 모음을 제공합니다.
-- **[Conversation](./conversation.md)**: 자주 묻는 질문, 디버그 팁, 문제 해결 가이드를 다룹니다.
-- **[Summary](./summary.md)**: 완료 후 점검 항목, 기능 확장 아이디어, 다음 단계 추천 작업을 제공합니다.
+```mermaid
+graph TD
+    A[1️⃣ index.md<br/>전체 개요 파악] --> B[2️⃣ introduction.md<br/>아키텍처 이해]
+    B --> C[3️⃣ development.md<br/>개발 환경 실습]
+    C --> D[4️⃣ deployment.md<br/>배포 실습]
+    D --> E[5️⃣ security.md<br/>보안 검토]
+    E --> F[6️⃣ summary.md<br/>학습 정리]
+    
+    G[resources.md<br/>필요시 참고] -.-> C
+    G -.-> D
+    H[conversation.md<br/>문제 발생시] -.-> C
+    H -.-> D
+```
 
-## 🏗️ 기술 스택 및 아키텍처
+### 권장 학습 경로
 
-### Frontend 기술
-- **React 18**: Concurrent 기능, 자동 배칭
-- **TypeScript**: 타입 안정성 및 IntelliSense
-- **Vite**: 번개같이 빠른 HMR (Hot Module Replacement)
-- **Tailwind CSS**: 유틸리티 우선 스타일링
-- **Framer Motion**: 부드러운 드래그 애니메이션
+| 순서 | 문서 | 목적 | 소요 시간 |
+|------|------|------|----------|
+| **1** | **[index.md](./index.md)** 👈 지금 여기! | 전체 개요와 빠른 시작 가이드 | 5분 |
+| **2** | **[introduction.md](./introduction.md)** | 기술 스택, 아키텍처 상세 설명 | 15분 |
+| **3** | **[development.md](./development.md)** | Codespaces 설정, 로컬 개발 실습 | 25분 |
+| **4** | **[deployment.md](./deployment.md)** | Azure 배포, CI/CD 파이프라인 구축 | 30분 |
+| **5** | **[security.md](./security.md)** | OIDC 인증, Secrets 관리, 보안 강화 | 10분 |
+| **6** | **[summary.md](./summary.md)** | 학습 정리, 다음 단계 제안 | 5분 |
+| | **[resources.md](./resources.md)** | 공식 문서, 명령어 모음 (필요시 참고) | - |
+| | **[conversation.md](./conversation.md)** | FAQ, 트러블슈팅 (문제 발생시) | - |
 
-### Backend 기술
-- **FastAPI**: 고성능 비동기 웹 프레임워크
-- **WebSocket**: 양방향 실시간 통신
-- **Pydantic**: 데이터 검증 및 JSON 직렬화
-- **Uvicorn**: ASGI 서버
+> 💡 **Tip**: 숙련자는 3번(development.md)부터 시작해도 됩니다!
 
-### DevOps 기술
-- **Docker**: 멀티 스테이지 빌드로 최적화
-- **GitHub Actions**: CI/CD 자동화
-- **GitHub Container Registry**: 이미지 저장소
-- **Azure Container Apps**: 서버리스 컨테이너 호스팅
+## 🏗️ 기술 스택 (간략)
+
+- **Frontend**: React 18 + TypeScript + Vite + Tailwind CSS
+- **Backend**: FastAPI + WebSocket + Uvicorn
+- **DevOps**: Docker + GitHub Actions + Azure Container Apps
+
+> 📖 각 기술의 역할과 아키텍처는 **[introduction.md](./introduction.md)**에서 상세히 다룹니다.
 
 ## 사전 점검
 
@@ -185,73 +194,44 @@ graph TD
     G --> H[🎉 배포 완료!]
 ```
 
-## 🎓 핸즈온 완료 체크리스트
+## ✅ 실습 진행 체크리스트
 
-완료한 단계에 체크해보세요!
+각 단계를 완료할 때마다 체크하세요!
 
+### 📦 준비 단계
 - [ ] GitHub 저장소 포크
 - [ ] Codespaces 생성 및 실행
+
+### 💻 개발 실습
 - [ ] `./start.sh`로 로컬 서버 실행
 - [ ] 브라우저에서 앱 접속 확인
 - [ ] 포스트잇 생성/수정/이동 테스트
-- [ ] 5가지 색상 모두 테스트
-- [ ] 드래그 앤 드롭으로 위치 이동
-- [ ] 2x2 매트릭스 분면 모드 테스트
-- [ ] 포스트잇 고정 기능 테스트
 - [ ] 한글 입력 테스트 (자모 분리 없는지 확인)
 - [ ] 새 브라우저 탭에서 실시간 동기화 확인
-- [ ] 코드 수정 (타이틀 변경)
+
+### 🚀 배포 실습
+- [ ] 코드 수정 (타이틀 변경 등)
 - [ ] Git 커밋 및 푸시
 - [ ] Azure CI/CD 설정
 - [ ] GitHub Actions 실행 확인
 - [ ] 배포된 Azure URL 접속
-- [ ] 프로덕션 환경에서 실시간 협업 테스트
 
-## 📖 학습 목표
-
-이 랩을 완료하면 다음 내용을 이해하고 실습할 수 있습니다:
-
-### 개발 환경
-- ✅ GitHub Codespaces로 클라우드 개발 환경 구축
-- ✅ `.devcontainer` 설정으로 재현 가능한 개발 환경 생성
-
-### 풀스택 개발
-- ✅ React + TypeScript + Vite 프론트엔드 구조
-- ✅ FastAPI 비동기 백엔드 아키텍처
-- ✅ WebSocket 실시간 양방향 통신 구현
-- ✅ 한글 IME 처리 및 Debounce 최적화
-
-### 인프라 & 배포
-- ✅ Docker 멀티 스테이지 빌드로 이미지 최적화 (300MB → 150MB)
-- ✅ GitHub Actions로 자동 CI/CD 파이프라인 구축
-- ✅ GitHub Container Registry에 이미지 저장
-- ✅ Azure Container Apps 서버리스 배포
-- ✅ OIDC 기반 무비밀번호 인증
-
-### 실시간 협업 시스템
-- ✅ Connection Manager로 WebSocket 연결 풀 관리
-- ✅ 브로드캐스트 패턴으로 다중 클라이언트 동기화
-- ✅ 버전 관리로 충돌 방지 (Last Writer Wins)
-- ✅ 드래그 실시간 전송 (90ms throttle + 120ms flush)
+> 🎯 **완료 확인**: 모든 단계를 마쳤다면 **[summary.md](./summary.md)**에서 학습 성과를 점검하세요!
 
 ## ⏱️ 실습 예상 시간
 
-| 단계 | 시간 | 내용 |
-|------|------|------|
-| **1. 포크 & Codespaces** | 5분 | GitHub 저장소 포크, Codespaces 생성 |
-| **2. 로컬 실행** | 10분 | 개발 서버 시작, 앱 기능 테스트 |
-| **3. 코드 이해** | 15분 | 프론트엔드/백엔드 구조 탐색, WebSocket 흐름 파악 |
-| **4. 코드 수정** | 10분 | 타이틀 변경, Git 커밋/푸시 |
-| **5. Azure 배포** | 30분 | CI/CD 설정, GitHub Actions 실행, 배포 확인 |
-| **6. 실시간 협업 테스트** | 10분 | 여러 브라우저에서 동시 작업 테스트 |
-| **총 예상 시간** | **약 80분** | 초보자 기준, 숙련자는 40분 가능 |
+| 단계 | 시간 |
+|------|------|
+| **전체 워크샵** | 약 **90분** (초보자 기준) |
+| **핵심 실습만** | 약 **40분** (숙련자) |
 
-## 다음 단계
+> 💡 막히는 부분이 있다면 [conversation.md](./conversation.md)의 FAQ를 확인하세요!
 
-모든 단계를 완료한 후에는:
-- 코드를 수정하여 새로운 기능 추가
-- 다른 사용자와 실시간 협업 테스트
-- 추가 Azure 서비스 통합 (예: Azure Storage, CosmosDB)
-- 프로덕션 환경을 위한 보안 강화
+---
 
-이제 [Introduction](./introduction.md) 페이지로 이동하여 프로젝트를 자세히 살펴보세요!
+## 🚀 시작하기
+
+준비되셨나요? 이제 **[introduction.md](./introduction.md)**로 이동하여 아키텍처를 이해하고,  
+**[development.md](./development.md)**에서 본격적인 실습을 시작하세요!
+
+> 🎯 바로 실습을 시작하고 싶다면 → **[development.md](./development.md)**로 이동
