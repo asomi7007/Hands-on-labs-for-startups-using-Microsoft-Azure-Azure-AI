@@ -76,11 +76,11 @@
 ```
 .
 ├── docs/                      # 워크샵 문서 (MkDocs)
-│   ├── lab1/                 # Lab 1: Azure 크레딧
-│   ├── lab2/                 # Lab 2: AI 챗봇
-│   ├── lab3/                 # Lab 3: Function Calling
-│   ├── lab4/                 # Lab 4: File Search
-│   ├── lab5/                 # Lab 5: 실시간 협업 앱
+│   ├── lab1/                 # Lab 1: Microsoft for Startups Founders Hub & Azure 크레딧
+│   ├── lab2/                 # Lab 2: WordPress 홈페이지 구축
+│   ├── lab3/                 # Lab 3: Contoso Sales Assistant
+│   ├── lab4/                 # Lab 4: Static Web Apps 배포
+│   ├── lab5/                 # Lab 5: Affinity Diagram 실시간 협업 보드
 │   ├── css/                  # 커스텀 스타일
 │   ├── js/                   # 커스텀 스크립트
 │   └── media/                # 이미지 및 미디어
@@ -89,6 +89,11 @@
 │       └── deploy.yml        # GitHub Pages 자동 배포
 ├── mkdocs.yml                # MkDocs 설정
 ├── requirements.txt          # Python 의존성
+├── LICENSE                   # MIT 라이선스
+├── CODE_OF_CONDUCT.md        # 행동 강령
+├── CONTRIBUTING.md           # 기여 가이드라인
+├── SECURITY.md               # 보안 정책
+├── CHANGELOG.md              # 변경 이력
 └── README.md                 # 이 파일
 ```
 
