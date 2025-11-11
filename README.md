@@ -18,11 +18,11 @@
 
 이 워크샵을 통해 다음을 배우게 됩니다:
 
-- **Azure 시작하기**: 스타트업을 위한 무료 크레딧 받기 및 계정 설정
-- **AI 에이전트 구축**: Azure OpenAI를 활용한 Function Calling, File Search, Code Interpreter
-- **풀스택 AI 앱 개발**: WordPress와 Azure AI 통합, 실시간 협업 도구 구현
-- **클라우드 네이티브 배포**: Docker, GitHub Actions, Azure Container Apps로 CI/CD 파이프라인 구축
-- **보안 및 운영**: OIDC 인증, Managed Identity, 프로덕션 보안 모범 사례
+- **Microsoft for Startups 활용**: Founders Hub에서 $1,000 Azure 크레딧 받기
+- **WordPress + AI 챗봇 구축**: Azure Marketplace 배포, Azure AI 에이전트 통합
+- **세일즈 AI 에이전트**: Contoso Sales Assistant로 RAG 기반 고객 응대 시스템 구현
+- **정적 웹사이트 배포**: Azure Static Web Apps로 GitHub 자동 배포 파이프라인 구축
+- **실시간 협업 앱 개발**: WebSocket 기반 Affinity Diagram 보드, Docker 컨테이너화, Azure Container Apps 배포
 
 ---
 
@@ -46,11 +46,11 @@
 
 | Lab | 주제 | 핵심 기술 |
 |-----|------|----------|
-| **Lab 1** | Azure 크레딧 받기 | Azure 계정, 스타트업 크레딧 |
-| **Lab 2** | AI 챗봇 구축 | WordPress, Azure OpenAI, RAG |
-| **Lab 3** | Function Calling | Azure OpenAI, 외부 API 통합 |
-| **Lab 4** | File Search & Code Interpreter | AI Assistant, 문서 처리 |
-| **Lab 5** | 실시간 협업 앱 배포 | React, FastAPI, WebSocket, Container Apps |
+| **Lab 1** | Microsoft for Startups Founders Hub & Azure 크레딧 받기 | Microsoft 계정, LinkedIn, $1,000 크레딧 |
+| **Lab 2** | Azure Marketplace에서 WordPress 홈페이지 구축 | 도메인 구매, WordPress, Azure AI 에이전트, 챗봇 통합 |
+| **Lab 3** | Contoso Sales Assistant 사용해보기 | 샘플 에이전트, 시스템 프롬프트, RAG, 세일즈 Q&A |
+| **Lab 4** | Static Web Apps Azure 배포 | GitHub 연동, Static Web Apps, PR 미리보기 |
+| **Lab 5** | Affinity Diagram Web App - 실시간 협업 보드 만들기 | GitHub Codespaces, React+FastAPI, WebSocket, Docker, Container Apps |
 
 > 💡 각 Lab의 자세한 내용은 [워크샵 가이드](https://asomi7007.github.io/Hands-on-labs-for-startups-using-Microsoft-Azure-Azure-AI/)를 참고하세요.
 
