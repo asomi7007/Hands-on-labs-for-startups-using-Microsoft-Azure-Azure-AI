@@ -1,0 +1,1258 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../media/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Security - 바로 써먹는 Azure &amp; Azure AI 활용</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#security" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="바로 써먹는 Azure &amp; Azure AI 활용" class="md-header__button md-logo" aria-label="바로 써먹는 Azure &amp; Azure AI 활용" data-md-component="logo">
+      
+  <img src="../../media/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            바로 써먹는 Azure &amp; Azure AI 활용
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Security
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    바로 써먹는 Azure &amp; Azure AI 활용
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="바로 써먹는 Azure &amp; Azure AI 활용" class="md-nav__button md-logo" aria-label="바로 써먹는 Azure &amp; Azure AI 활용" data-md-component="logo">
+      
+  <img src="../../media/favicon.png" alt="logo">
+
+    </a>
+    바로 써먹는 Azure &amp; Azure AI 활용
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    바로 써먹는 Azure &amp; Azure AI 활용
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    소개
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1 · Founders Hub &amp; Azure 크레딧
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 1 · Founders Hub &amp; Azure 크레딧
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    전체 안내
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/conversation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conversation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2 · WordPress + Azure AI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 2 · WordPress + Azure AI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    개요
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/domain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    도메인 구매
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/ai-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Azure AI Foundry 에이전트 생성
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/wp-chatbot-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WordPress 챗봇 통합 (1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/tools-rag-logicapps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool · RAG · Logic App 실습
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/wp-chatbot-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WordPress 챗봇 통합 (2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3 · Contoso Sales Assistant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4 · Static Web Apps 배포
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5 · Node.js GitHub → Azure 배포
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    요약
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    자료 모음
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identity-access-entra-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity &amp; Access (Entra ID)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secrets-keys-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets &amp; Keys management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-data-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network &amp; Data protection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        모범 사례
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        보안 체크리스트
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        보안 사고 대응
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        추가 보안 리소스
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="security">Security<a class="headerlink" href="#security" title="Permanent link">¶</a></h1>
+<p>이 문서는 Affinity Diagram App 배포 시 보안 설정과 모범 사례를 정리합니다.</p>
+<h2 id="identity-access-entra-id">Identity &amp; Access (Entra ID)<a class="headerlink" href="#identity-access-entra-id" title="Permanent link">¶</a></h2>
+<h3 id="service-principal">Service Principal 권한 관리<a class="headerlink" href="#service-principal" title="Permanent link">¶</a></h3>
+<p>배포 스크립트가 자동으로 생성한 Service Principal은 최소 권한 원칙을 따릅니다:</p>
+<ul>
+<li><strong>역할</strong>: Contributor (리소스 그룹 범위)</li>
+<li><strong>사용처</strong>: GitHub Actions에서 Azure 리소스 배포</li>
+</ul>
+<h3 id="federated-credentials-oidc">Federated Credentials (OIDC)<a class="headerlink" href="#federated-credentials-oidc" title="Permanent link">¶</a></h3>
+<p>비밀번호 대신 OIDC를 사용하여 GitHub Actions와 Azure 간 인증:</p>
+<p><strong>장점:</strong>
+- ✅ 비밀번호 없이 안전한 인증
+- ✅ 자동 갱신, 만료 걱정 없음
+- ✅ 특정 저장소/브랜치로만 제한 가능</p>
+<p><strong>설정 확인:</strong>
+</p><div class="highlight"><pre><span></span><code>az<span class="w"> </span>ad<span class="w"> </span>app<span class="w"> </span>federated-credential<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--id<span class="w"> </span>&lt;client-id&gt;
+</code></pre></div><p></p>
+<h2 id="secrets-keys-management">Secrets &amp; Keys management<a class="headerlink" href="#secrets-keys-management" title="Permanent link">¶</a></h2>
+<h3 id="github-secrets">GitHub Secrets<a class="headerlink" href="#github-secrets" title="Permanent link">¶</a></h3>
+<p>민감한 정보는 반드시 GitHub Secrets에 저장:</p>
+<p><strong>저장된 Secrets:</strong>
+- <code>AZURE_CLIENT_ID</code>: Service Principal ID
+- <code>AZURE_TENANT_ID</code>: Azure AD 테넌트 ID
+- <code>AZURE_SUBSCRIPTION_ID</code>: 구독 ID
+- <code>AZURE_RESOURCE_GROUP</code>: 리소스 그룹 이름
+- <code>AZURE_CONTAINER_APP_NAME</code>: 앱 이름</p>
+<p><strong>Secrets 확인:</strong>
+1. GitHub 저장소 → Settings
+2. Secrets and variables → Actions
+3. Repository secrets 목록 확인</p>
+<div class="admonition warning">
+<p class="admonition-title">주의사항</p>
+<p>Secrets는 절대 코드나 로그에 노출하지 마세요!</p>
+</div>
+<h3 id="environment-variables-vs-secrets">Environment Variables vs. Secrets<a class="headerlink" href="#environment-variables-vs-secrets" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>유형</th>
+<th>저장 위치</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Environment Variables</td>
+<td>Container App 설정</td>
+<td>비민감 설정값</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>GitHub Secrets</td>
+<td>인증 정보, API 키</td>
+</tr>
+</tbody>
+</table>
+<h2 id="network-data-protection">Network &amp; Data protection<a class="headerlink" href="#network-data-protection" title="Permanent link">¶</a></h2>
+<h3 id="https">HTTPS 강제<a class="headerlink" href="#https" title="Permanent link">¶</a></h3>
+<p>Azure Container Apps는 기본적으로 HTTPS를 제공:</p>
+<ul>
+<li>✅ 자동 TLS/SSL 인증서</li>
+<li>✅ HTTP → HTTPS 자동 리다이렉트</li>
+<li>✅ 최신 TLS 1.2/1.3 지원</li>
+</ul>
+<h3 id="cors">CORS 설정<a class="headerlink" href="#cors" title="Permanent link">¶</a></h3>
+<p>백엔드에서 CORS를 허용하여 프론트엔드와 통신:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># backend/app.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.cors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CORSMiddleware</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">CORSMiddleware</span><span class="p">,</span>
+    <span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>  <span class="c1"># 프로덕션에서는 특정 도메인만 허용</span>
+    <span class="n">allow_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+    <span class="n">allow_headers</span><span class="o">=</span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">프로덕션 권장 설정</p>
+<div class="highlight"><pre><span></span><code><span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">"https://your-domain.com"</span><span class="p">]</span>
+</code></pre></div>
+</div>
+<h3 id="_1">데이터 보호<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<p>현재 앱은 인메모리 저장소를 사용:</p>
+<p><strong>프로덕션 강화 방안:</strong>
+1. <strong>영구 저장소 사용</strong>: Azure Cosmos DB, Azure SQL
+2. <strong>데이터 암호화</strong>: 저장 시 암호화 (Encryption at rest)
+3. <strong>백업 설정</strong>: 자동 백업 정책 구성</p>
+<h3 id="container">Container 보안<a class="headerlink" href="#container" title="Permanent link">¶</a></h3>
+<p><strong>이미지 스캔:</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1"># Docker 이미지 취약점 스캔</span>
+docker<span class="w"> </span>scan<span class="w"> </span>affinity-app
+</code></pre></div><p></p>
+<p><strong>최소 권한 실행:</strong>
+- Container는 root가 아닌 사용자로 실행
+- 불필요한 패키지 제거</p>
+<h2 id="_2">모범 사례<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<h3 id="1-secrets">1. Secrets 로테이션<a class="headerlink" href="#1-secrets" title="Permanent link">¶</a></h3>
+<p>정기적으로 Service Principal 인증서 갱신:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 새 Federated Credential 생성</span>
+az<span class="w"> </span>ad<span class="w"> </span>app<span class="w"> </span>federated-credential<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--id<span class="w"> </span>&lt;client-id&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--parameters<span class="w"> </span>credential.json
+</code></pre></div>
+<h3 id="2">2. 최소 권한 원칙<a class="headerlink" href="#2" title="Permanent link">¶</a></h3>
+<p>필요한 최소 권한만 부여:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 특정 리소스 그룹에만 권한 부여</span>
+az<span class="w"> </span>role<span class="w"> </span>assignment<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--assignee<span class="w"> </span>&lt;service-principal-id&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--role<span class="w"> </span>Contributor<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--scope<span class="w"> </span>/subscriptions/&lt;subscription-id&gt;/resourceGroups/&lt;resource-group&gt;
+</code></pre></div>
+<h3 id="3">3. 감사 로그 활성화<a class="headerlink" href="#3" title="Permanent link">¶</a></h3>
+<p>Azure Activity Log로 모든 작업 추적:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Activity Log 확인</span>
+az<span class="w"> </span>monitor<span class="w"> </span>activity-log<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--resource-group<span class="w"> </span>&lt;resource-group&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-events<span class="w"> </span><span class="m">50</span>
+</code></pre></div>
+<h3 id="4">4. 네트워크 제한<a class="headerlink" href="#4" title="Permanent link">¶</a></h3>
+<p>필요시 IP 제한 설정:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Container App에 IP 제한 추가</span>
+az<span class="w"> </span>containerapp<span class="w"> </span>ingress<span class="w"> </span>access-restriction<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>affinity-app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--resource-group<span class="w"> </span>&lt;resource-group&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--rule-name<span class="w"> </span><span class="s2">"office"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ip-address<span class="w"> </span><span class="s2">"1.2.3.4/32"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--action<span class="w"> </span>Allow
+</code></pre></div>
+<h3 id="5-container-registry">5. Container Registry 보안<a class="headerlink" href="#5-container-registry" title="Permanent link">¶</a></h3>
+<p>GHCR 대신 Azure Container Registry 사용 시:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ACR 생성</span>
+az<span class="w"> </span>acr<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--resource-group<span class="w"> </span>&lt;resource-group&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>&lt;registry-name&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sku<span class="w"> </span>Basic<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--admin-enabled<span class="w"> </span><span class="nb">false</span>
+
+<span class="c1"># Managed Identity로 이미지 pull</span>
+az<span class="w"> </span>containerapp<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>affinity-app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--resource-group<span class="w"> </span>&lt;resource-group&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registry-server<span class="w"> </span>&lt;registry-name&gt;.azurecr.io<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--registry-identity<span class="w"> </span>system
+</code></pre></div>
+<h2 id="_3">보안 체크리스트<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<p>배포 전 다음 항목을 확인하세요:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> GitHub Secrets가 안전하게 저장됨</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> OIDC 인증이 설정됨 (비밀번호 미사용)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> Service Principal이 최소 권한만 가짐</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> HTTPS가 강제됨</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> CORS 설정이 프로덕션 환경에 맞게 조정됨</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 환경 변수에 민감한 정보 없음</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> Container 이미지에 취약점 없음</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled><span class="task-list-indicator"></span></label> 정기적인 보안 업데이트 계획 수립</li>
+</ul>
+<h2 id="_4">보안 사고 대응<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<h3 id="1-secrets_1">1. Secrets 유출 시<a class="headerlink" href="#1-secrets_1" title="Permanent link">¶</a></h3>
+<p>즉시 다음 조치:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Service Principal 비활성화</span>
+az<span class="w"> </span>ad<span class="w"> </span>sp<span class="w"> </span>update<span class="w"> </span>--id<span class="w"> </span>&lt;service-principal-id&gt;<span class="w"> </span>--set<span class="w"> </span><span class="nv">accountEnabled</span><span class="o">=</span><span class="nb">false</span>
+
+<span class="c1"># 2. GitHub Secrets 갱신</span>
+<span class="c1"># GitHub 저장소 → Settings → Secrets → 각 Secret 재생성</span>
+
+<span class="c1"># 3. 새 Service Principal 생성</span>
+./scripts/setup-azure-cicd.sh
+</code></pre></div>
+<h3 id="2_1">2. 비정상 활동 감지 시<a class="headerlink" href="#2_1" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Azure Activity Log 확인</span>
+az<span class="w"> </span>monitor<span class="w"> </span>activity-log<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--resource-group<span class="w"> </span>&lt;resource-group&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--max-events<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--offset<span class="w"> </span>7d
+
+<span class="c1"># Container App 로그 확인</span>
+az<span class="w"> </span>containerapp<span class="w"> </span>logs<span class="w"> </span>show<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span>affinity-app<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--resource-group<span class="w"> </span>&lt;resource-group&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--follow
+</code></pre></div>
+<h2 id="_5">추가 보안 리소스<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/azure/security/fundamentals/best-practices-and-patterns">Azure 보안 모범 사례</a></li>
+<li><a href="https://learn.microsoft.com/azure/container-apps/security">Container Apps 보안 가이드</a></li>
+<li><a href="https://docs.github.com/actions/security-guides/security-hardening-for-github-actions">GitHub Actions 보안 강화</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.footer", "content.code.copy", "navigation.tabs.sticky", "content.tabs.link", "toc.follow"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../js/custom-nav.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
